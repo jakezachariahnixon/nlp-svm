@@ -63,3 +63,12 @@ print(tfidf_vect.vocabulary_)
 # Output the vectorised data
 print("\n\nVECTORS:")
 print(train_x_tfidf)
+
+# Classification using SVM
+
+SVM = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
+SVM.fit(train_x_tfidf, train_y)
+
+predictions = SVM.predict(test_x_tfidf)
+
+print("SVM accuracy score: ", accuracy_score(predictions, test_y))
