@@ -13,9 +13,9 @@ from sklearn.metrics import accuracy_score
 
 np.random.seed(500)
 
-Corpus = pd.read_csv(r"./tempdata.csv", encoding='latin-1')
+Corpus = pd.read_csv(r"./data.csv", encoding='latin-1')
 
-# Pre-processing
+## Pre-processing
 
 # Remove blank rows
 Corpus['text'].dropna(inplace=True)
@@ -57,14 +57,14 @@ tfidf_vect = TfidfVectorizer(max_features=500)
 tfidf_vect.fit(Corpus['text_final'])
 train_x_tfidf = tfidf_vect.transform(train_x)
 test_x_tfidf = tfidf_vect.transform(test_x)
-# Output the learned vocabulary
-print("\n\nLEARNED VOCAB:")
-print(tfidf_vect.vocabulary_)
-# Output the vectorised data
-print("\n\nVECTORS:")
-print(train_x_tfidf)
+# # Output the learned vocabulary
+# print("\n\nLEARNED VOCAB:")
+# print(tfidf_vect.vocabulary_)
+# # Output the vectorised data
+# print("\n\nVECTORS:")
+# print(train_x_tfidf)
 
-# Classification using SVM
+## Classification using SVM
 
 SVM = svm.SVC(C=1.0, kernel='linear', degree=3, gamma='auto')
 SVM.fit(train_x_tfidf, train_y)
